@@ -8,23 +8,11 @@
     android:id="@+id/rlBackground"
     android:background="@drawable/gradient_list">
 
-    <TextView
-        android:id="@+id/tvTasks"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textColor="@android:color/black"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginTop="16dp"
-        android:textSize="32sp"
-        android:text="@string/tasks" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvTasks"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tvTasks"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:nestedScrollingEnabled="true" />
 

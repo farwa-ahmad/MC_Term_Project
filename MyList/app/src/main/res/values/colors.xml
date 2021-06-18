@@ -9,4 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="primary">#00bbd3</color>
     <color name="secondary">#3a2c51</color>
+    <color name="edit_color">#e6792f</color>
+    <color name="dark_gray">#FFAAAAAA</color>
+    <color name="transparent">#00AAAAAA</color>
 </resources>
