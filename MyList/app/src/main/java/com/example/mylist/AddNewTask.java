@@ -96,12 +96,14 @@ public class AddNewTask extends BottomSheetDialogFragment {
                 {
                     binding.btnSave.setEnabled(false);
                     binding.btnSave.setTextColor(getResources().getColor(R.color.dark_gray));
+                    binding.btnSave.setBackgroundColor(getResources().getColor(R.color.transparent));
 
                 }
                 else
                 {
                     binding.btnSave.setEnabled(true);
                     binding.btnSave.setTextColor(getResources().getColor(R.color.primary));
+                    binding.btnSave.setBackgroundColor(getResources().getColor(R.color.transparent));
                 }
             }
 
