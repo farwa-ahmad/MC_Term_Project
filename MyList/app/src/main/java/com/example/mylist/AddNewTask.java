@@ -39,7 +39,7 @@ public class AddNewTask extends BottomSheetDialogFragment {
 
     private String dueDate = "";
     private String id = "";
-    private String dueDateUpdate = "";
+//    private String dueDateUpdate = "";
 
     private Context context;
 
@@ -73,10 +73,11 @@ public class AddNewTask extends BottomSheetDialogFragment {
             isUpdate = true;
             String task = bundle.getString("task");
             id = bundle.getString("id");
-            dueDateUpdate = bundle.getString("due");
+            dueDate = bundle.getString("due");
+
 
             binding.etTaskText.setText(task);
-            binding.tvSetDueDate.setText(dueDateUpdate);
+            binding.tvSetDueDate.setText(dueDate);
 
             if (task.length() > 0){
                 binding.btnSave.setEnabled(false);
@@ -116,22 +117,7 @@ public class AddNewTask extends BottomSheetDialogFragment {
         binding.tvSetDueDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Calendar calendar = Calendar.getInstance();
-                int MONTH = calendar.get(Calendar.MONTH);
-                int YEAR = calendar.get(Calendar.YEAR);
-                int DAY = calendar.get(Calendar.DATE);
-
-                DatePickerDialog datePickerDialog = new DatePickerDialog(context, new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        month = month + 1;
-
-                        dueDate = dayOfMonth+"/"+month+"/"+year;
-
-                        binding.tvSetDueDate.setText(dueDate);
-                    }
-            }, YEAR, MONTH, DAY);
-                datePickerDialog.show();
+                openCalender();
             }
         });
 
@@ -140,6 +126,11 @@ public class AddNewTask extends BottomSheetDialogFragment {
             @Override
             public void onClick(View v) {
                 String task = binding.etTaskText.getText().toString();
+                if(dueDate==""){
+                    Toast.makeText(context, "Select Due Date", Toast.LENGTH_SHORT).show();
+                    openCalender();
+                    return;
+                }
                 if (finalIsUpdate){
                     firestore.collection("task").document(id).update("task" , task , "due" , dueDate);
                     Toast.makeText(context, "Task Updated", Toast.LENGTH_SHORT).show();
@@ -190,5 +181,23 @@ public class AddNewTask extends BottomSheetDialogFragment {
         if (activity instanceof OnDialogCloseListener){
             ((OnDialogCloseListener)activity).onDialogClose(dialog);
         }
+    }
+    void openCalender(){
+        Calendar calendar = Calendar.getInstance();
+        int MONTH = calendar.get(Calendar.MONTH);
+        int YEAR = calendar.get(Calendar.YEAR);
+        int DAY = calendar.get(Calendar.DATE);
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(context, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                month = month + 1;
+
+                dueDate = dayOfMonth+"/"+month+"/"+year;
+
+                binding.tvSetDueDate.setText(dueDate);
+            }
+        }, YEAR, MONTH, DAY);
+        datePickerDialog.show();
     }
 }
