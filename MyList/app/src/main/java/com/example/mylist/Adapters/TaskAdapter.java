@@ -10,12 +10,16 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mylist.AddNewTask;
 import com.example.mylist.MainActivity;
 import com.example.mylist.Models.TaskModel;
 import com.example.mylist.R;
+import com.example.mylist.databinding.AddTaskLayoutBinding;
+import com.example.mylist.databinding.TaskLayoutBinding;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
@@ -54,7 +58,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
 
     public void editTask(int position){
         TaskModel taskModel = taskList.get(position);
-//        Toast.makeText(activity, taskModel.getDue().toString(), Toast.LENGTH_SHORT).show();
+
         Bundle bundle = new Bundle();
         bundle.putString("task" , taskModel.getTask());
         bundle.putString("due" , taskModel.getDue());

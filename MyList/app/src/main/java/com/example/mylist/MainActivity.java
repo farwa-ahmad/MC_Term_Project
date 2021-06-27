@@ -83,12 +83,8 @@ public class MainActivity extends AppCompatActivity implements OnDialogCloseList
                     if (documentChange.getType() == DocumentChange.Type.ADDED){
                         String id = documentChange.getDocument().getId();
                         TaskModel taskModel = documentChange.getDocument().toObject(TaskModel.class).withId(id);
-//                      Toast.makeText(MainActivity.this, ""+taskModel.getDue(), Toast.LENGTH_SHORT).show();
-
                         mList.add(taskModel);
                         taskAdapter.notifyDataSetChanged();
-
-
                     }
                 }
                 listenerRegistration.remove();
